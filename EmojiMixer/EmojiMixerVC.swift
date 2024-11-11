@@ -10,13 +10,14 @@ class EmojiMixerVC: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .white
         
+        
         setupNavigationBar()
     }
     // MARK: - NavigationBar
     
     private func setupNavigationBar() {
-        
         setupNavBarItemLeft()
+        setupNavBarItemRight()
         navigationController?.navigationBar.prefersLargeTitles = true
         title = "Emoji Mixer"
         
