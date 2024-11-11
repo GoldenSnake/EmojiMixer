@@ -9,8 +9,7 @@
 /* Begin PBXBuildFile section */
 		014959282CE228D70081EF4A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 014959272CE228D70081EF4A /* AppDelegate.swift */; };
 		0149592A2CE228D70081EF4A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 014959292CE228D70081EF4A /* SceneDelegate.swift */; };
-		0149592C2CE228D70081EF4A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0149592B2CE228D70081EF4A /* ViewController.swift */; };
-		0149592F2CE228D70081EF4A /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 0149592E2CE228D70081EF4A /* Base */; };
+		0149592C2CE228D70081EF4A /* EmojiMixerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0149592B2CE228D70081EF4A /* EmojiMixerVC.swift */; };
 		014959322CE228D70081EF4A /* EmojiMixer.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 014959302CE228D70081EF4A /* EmojiMixer.xcdatamodeld */; };
 		014959342CE228D90081EF4A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 014959332CE228D90081EF4A /* Assets.xcassets */; };
 		014959372CE228D90081EF4A /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 014959362CE228D90081EF4A /* Base */; };
@@ -20,8 +19,7 @@
 		014959242CE228D70081EF4A /* EmojiMixer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EmojiMixer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		014959272CE228D70081EF4A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		014959292CE228D70081EF4A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		0149592B2CE228D70081EF4A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		0149592E2CE228D70081EF4A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		0149592B2CE228D70081EF4A /* EmojiMixerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiMixerVC.swift; sourceTree = "<group>"; };
 		014959312CE228D70081EF4A /* EmojiMixer.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = EmojiMixer.xcdatamodel; sourceTree = "<group>"; };
 		014959332CE228D90081EF4A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		014959362CE228D90081EF4A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -60,8 +58,7 @@
 			children = (
 				014959272CE228D70081EF4A /* AppDelegate.swift */,
 				014959292CE228D70081EF4A /* SceneDelegate.swift */,
-				0149592B2CE228D70081EF4A /* ViewController.swift */,
-				0149592D2CE228D70081EF4A /* Main.storyboard */,
+				0149592B2CE228D70081EF4A /* EmojiMixerVC.swift */,
 				014959332CE228D90081EF4A /* Assets.xcassets */,
 				014959352CE228D90081EF4A /* LaunchScreen.storyboard */,
 				014959382CE228D90081EF4A /* Info.plist */,
@@ -130,7 +127,6 @@
 			files = (
 				014959342CE228D90081EF4A /* Assets.xcassets in Resources */,
 				014959372CE228D90081EF4A /* Base in Resources */,
-				0149592F2CE228D70081EF4A /* Base in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -142,7 +138,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				014959322CE228D70081EF4A /* EmojiMixer.xcdatamodeld in Sources */,
-				0149592C2CE228D70081EF4A /* ViewController.swift in Sources */,
+				0149592C2CE228D70081EF4A /* EmojiMixerVC.swift in Sources */,
 				014959282CE228D70081EF4A /* AppDelegate.swift in Sources */,
 				0149592A2CE228D70081EF4A /* SceneDelegate.swift in Sources */,
 			);
@@ -151,14 +147,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		0149592D2CE228D70081EF4A /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				0149592E2CE228D70081EF4A /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		014959352CE228D90081EF4A /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -301,7 +289,6 @@
 				INFOPLIST_FILE = EmojiMixer/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -311,9 +298,13 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = ru.goldensnake.EmojiMixer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -329,7 +320,6 @@
 				INFOPLIST_FILE = EmojiMixer/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -339,9 +329,13 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = ru.goldensnake.EmojiMixer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

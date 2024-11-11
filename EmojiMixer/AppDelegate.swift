@@ -1,9 +1,3 @@
-//
-//  AppDelegate.swift
-//  EmojiMixer
-//
-//  Created by Elina Shterengarts on 11.11.2024.
-//
 
 import UIKit
 import CoreData
