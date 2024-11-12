@@ -1,5 +1,6 @@
 
 import Foundation
+import UIKit
 
 
 final class EmojiManagerDelegate: EmojiMixerDelegateProtocol {
@@ -24,11 +25,14 @@ final class EmojiManagerDelegate: EmojiMixerDelegateProtocol {
     
     //пустой массив для добавления эмодзи
     var visibleEmojies = [String]()
+    var color = UIColor()
     
     func makeNewMix() -> String?  {
         guard let first = emojies.randomElement() else {return nil}
         guard let second = emojies.randomElement() else {return nil}
         guard let third = emojies.randomElement() else {return nil}
+        color = makeColor((first, second, third))
+        print(color)
         let randomMix = first + second + third
         print(randomMix)
         return randomMix
@@ -49,5 +53,20 @@ final class EmojiManagerDelegate: EmojiMixerDelegateProtocol {
             return lastIndex
         }
         return nil
+    }
+    
+    func makeColor(_ emojis: (String, String, String)) -> UIColor {
+        func cgfloat256(_ t: String) -> CGFloat {
+            let value = t.unicodeScalars.reduce(Int(0)) { r, t in
+                return r + Int(t.value)
+            }
+            return CGFloat(value % 128) / 255.0 + 0.25
+        }
+        return UIColor(
+            red: cgfloat256(emojis.0),
+            green: cgfloat256(emojis.1),
+            blue: cgfloat256(emojis.2),
+            alpha: 1
+        )
     }
 }
