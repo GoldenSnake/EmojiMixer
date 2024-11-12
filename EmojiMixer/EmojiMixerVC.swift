@@ -132,7 +132,7 @@ extension EmojiMixerVC: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let emojiCell = collectionView.dequeueReusableCell(withReuseIdentifier: "EmojiCell", for: indexPath) as? EmojiCellCollectionViewCell else {return UICollectionViewCell()}
         emojiCell.prepareForReuse()
-        if let emojies = delegate?.emojies[indexPath.item] {
+        if let emojies = delegate?.visibleEmojies[indexPath.item] {
             emojiCell.config(withTitle: emojies)}
         emojiCell.backgroundColor = .lightGray
         
