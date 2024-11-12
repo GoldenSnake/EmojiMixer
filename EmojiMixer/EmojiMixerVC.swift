@@ -22,8 +22,13 @@ class EmojiMixerVC: UIViewController {
         // Путешествия и транспорт
         "✈️", "🚗", "🚀", "🚁", "🚲",
         // Символы и объекты
-        "💡", "📱", "💻", "⌛️", "🔒"
+        "💡", "📱", "💻", "⌛️", "🔒",
+        "🍇", "🍈", "🍉", "🍊", "🍋", "🍌", "🍍", "🥭", "🍎", "🍏", "🍐", "🍒", "🍓", "🫐", "🥝", "🍅", "🫒", "🥥", "🥑", "🍆", "🥔", "🥕", "🌽", "🌶️", "🫑", "🥒", "🥬", "🥦", "🧄", "🧅", "🍄"
     ]
+    
+    var visibleEmojies = [String]()
+    
+    let params = GeometricParams(cellCount: 2, leftInset: 10, rightInset: 10, cellSpacing: 10)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -69,24 +74,26 @@ class EmojiMixerVC: UIViewController {
         
         //register
         collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "cell")
+        collectionView.register(EmojiCellCollectionViewCell.self, forCellWithReuseIdentifier: "EmojiCell")
         
-        //DataSourse
+        //DataSourse & Delegate
         collectionView.dataSource = self
+        collectionView.delegate = self
         
         setupCollectionConstraints()
     }
     
     func setupCollectionConstraints() {
-            // Устанавливаем авто-лайаут
-            collectionView.translatesAutoresizingMaskIntoConstraints = false
-
-            NSLayoutConstraint.activate([
-                collectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-                collectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
-                collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-                collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
-            ])
-        }
+        // Устанавливаем авто-лайаут
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            collectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            collectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
+        ])
+    }
     
     // MARK: - @objc
     @objc private func addButtonDidTap() {
@@ -111,8 +118,40 @@ extension EmojiMixerVC: UICollectionViewDataSource {
     
     //настройка ячейки
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath)
-        cell.backgroundColor = .lightGray // Цвет фона для ячейки
-        return cell
+        guard let emojiCell = collectionView.dequeueReusableCell(withReuseIdentifier: "EmojiCell", for: indexPath) as? EmojiCellCollectionViewCell else {return UICollectionViewCell()}
+        
+        emojiCell.config(withTitle: emojies[indexPath.row])
+        emojiCell.backgroundColor = .lightGray
+        
+        emojiCell.prepareForReuse()
+        
+        return emojiCell
+    }
+}
+
+// MARK: - UICollectionViewDelegateFlowLayout
+
+extension EmojiMixerVC: UICollectionViewDelegateFlowLayout{
+    
+    // Метод для задания размера ячейки
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let availableWidth = collectionView.frame.width - params.paddingWidth
+        let cellWidth =  availableWidth / CGFloat(params.cellCount)
+        return CGSize(width: cellWidth, height: cellWidth * 2 / 3)
+    }
+    
+    //отступы для секций в коллекциях insetForSectionAt
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return UIEdgeInsets(top: params.cellSpacing, left: params.cellSpacing, bottom: params.cellSpacing, right: params.cellSpacing)
+    }
+    
+    //минимальный отступ между строками коллекции
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return params.cellSpacing
+    }
+    
+    //расстояние между столбцами
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return params.cellSpacing
     }
 }

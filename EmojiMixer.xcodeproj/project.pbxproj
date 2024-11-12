@@ -13,6 +13,8 @@
 		014959322CE228D70081EF4A /* EmojiMixer.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 014959302CE228D70081EF4A /* EmojiMixer.xcdatamodeld */; };
 		014959342CE228D90081EF4A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 014959332CE228D90081EF4A /* Assets.xcassets */; };
 		014959372CE228D90081EF4A /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 014959362CE228D90081EF4A /* Base */; };
+		0149593F2CE2371A0081EF4A /* EmojiCellCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0149593E2CE2371A0081EF4A /* EmojiCellCollectionViewCell.swift */; };
+		014959412CE25E5A0081EF4A /* GeometricParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = 014959402CE25E5A0081EF4A /* GeometricParams.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +26,8 @@
 		014959332CE228D90081EF4A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		014959362CE228D90081EF4A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		014959382CE228D90081EF4A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0149593E2CE2371A0081EF4A /* EmojiCellCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiCellCollectionViewCell.swift; sourceTree = "<group>"; };
+		014959402CE25E5A0081EF4A /* GeometricParams.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeometricParams.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +63,8 @@
 				014959272CE228D70081EF4A /* AppDelegate.swift */,
 				014959292CE228D70081EF4A /* SceneDelegate.swift */,
 				0149592B2CE228D70081EF4A /* EmojiMixerVC.swift */,
+				014959402CE25E5A0081EF4A /* GeometricParams.swift */,
+				0149593E2CE2371A0081EF4A /* EmojiCellCollectionViewCell.swift */,
 				014959332CE228D90081EF4A /* Assets.xcassets */,
 				014959352CE228D90081EF4A /* LaunchScreen.storyboard */,
 				014959382CE228D90081EF4A /* Info.plist */,
@@ -140,7 +146,9 @@
 				014959322CE228D70081EF4A /* EmojiMixer.xcdatamodeld in Sources */,
 				0149592C2CE228D70081EF4A /* EmojiMixerVC.swift in Sources */,
 				014959282CE228D70081EF4A /* AppDelegate.swift in Sources */,
+				014959412CE25E5A0081EF4A /* GeometricParams.swift in Sources */,
 				0149592A2CE228D70081EF4A /* SceneDelegate.swift in Sources */,
+				0149593F2CE2371A0081EF4A /* EmojiCellCollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
