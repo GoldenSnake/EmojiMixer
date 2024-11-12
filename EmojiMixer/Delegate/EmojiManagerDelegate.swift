@@ -25,12 +25,18 @@ final class EmojiManagerDelegate: EmojiMixerDelegateProtocol {
     //пустой массив для добавления эмодзи
     var visibleEmojies = [String]()
     
-    func makeNewMix() {
-        
+    func makeNewMix() -> String?  {
+        guard let first = emojies.randomElement() else {return nil}
+        guard let second = emojies.randomElement() else {return nil}
+        guard let third = emojies.randomElement() else {return nil}
+        let randomMix = first + second + third
+        print(randomMix)
+        return randomMix
     }
     
     func addRandomEmoji() {
-        guard let randomEmoji = emojies.randomElement() else {
+        
+        guard let randomEmoji = makeNewMix() else {
             print("addRandomEmoji: Не удалось выбрать randomEmoji")
             return}
         visibleEmojies.append(randomEmoji)
