@@ -26,6 +26,7 @@ class EmojiMixerVC: UIViewController {
         "🍇", "🍈", "🍉", "🍊", "🍋", "🍌", "🍍", "🥭", "🍎", "🍏", "🍐", "🍒", "🍓", "🫐", "🥝", "🍅", "🫒", "🥥", "🥑", "🍆", "🥔", "🥕", "🌽", "🌶️", "🫑", "🥒", "🥬", "🥦", "🧄", "🧅", "🍄"
     ]
     
+    //пустой массив для добавления эмодзи
     var visibleEmojies = [String]()
     
     let params = GeometricParams(cellCount: 2, leftInset: 10, rightInset: 10, cellSpacing: 10)
@@ -98,10 +99,28 @@ class EmojiMixerVC: UIViewController {
     // MARK: - @objc
     @objc private func addButtonDidTap() {
         print("Add tapped!")
+        let randomEmoji = emojies.randomElement()
+        guard let randomEmoji = randomEmoji else {return}
+        
+        visibleEmojies.append(randomEmoji)
+        
+        let newIndex = IndexPath(item: visibleEmojies.count - 1, section: 0)
+        
+        collectionView.performBatchUpdates({collectionView.insertItems(at: [newIndex])})
     }
     
     @objc private func undoButtonDidTap() {
         print("Undo tapped!")
+        if !visibleEmojies.isEmpty { // Проверяем, что есть хотя бы один элемент в массиве
+            let lastIndex = visibleEmojies.count - 1 // Определяем индекс последнего элемента
+            visibleEmojies.removeLast() // Удаляем последний эмодзи из массива
+            
+            // Удаляем ячейку из коллекции с анимацией
+            let lastIndexPath = IndexPath(row: lastIndex, section: 0)
+            collectionView.performBatchUpdates({
+                collectionView.deleteItems(at: [lastIndexPath])
+            }, completion: nil)
+        }
     }
     
 }
@@ -113,17 +132,16 @@ extension EmojiMixerVC: UICollectionViewDataSource {
     
     //кол-во элементов
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return emojies.count
+        return visibleEmojies.count
     }
     
     //настройка ячейки
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let emojiCell = collectionView.dequeueReusableCell(withReuseIdentifier: "EmojiCell", for: indexPath) as? EmojiCellCollectionViewCell else {return UICollectionViewCell()}
         
-        emojiCell.config(withTitle: emojies[indexPath.row])
-        emojiCell.backgroundColor = .lightGray
-        
         emojiCell.prepareForReuse()
+        emojiCell.config(withTitle: emojies[indexPath.item])
+        emojiCell.backgroundColor = .lightGray
         
         return emojiCell
     }
