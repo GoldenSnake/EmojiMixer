@@ -92,7 +92,7 @@ class EmojiMixerVC: UIViewController {
         
         delegate.addRandomEmoji()
         
-        let emojiCount = delegate.visibleEmojies.count
+        let emojiCount = delegate.visibleEmojis.count
         let newIndex = IndexPath(item: emojiCount - 1, section: 0)
         collectionView.performBatchUpdates({
             collectionView.insertItems(at: [newIndex])
@@ -124,8 +124,8 @@ extension EmojiMixerVC: UICollectionViewDataSource {
     //кол-во элементов
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
-        guard let emojies = delegate?.visibleEmojies.count else {return 0}
-        return emojies
+        guard let emojis = delegate?.visibleEmojis.count else {return 0}
+        return emojis
     }
     
     //настройка ячейки
@@ -133,9 +133,9 @@ extension EmojiMixerVC: UICollectionViewDataSource {
         guard let emojiCell = collectionView.dequeueReusableCell(withReuseIdentifier: "EmojiCell", for: indexPath) as? EmojiCellCollectionViewCell else {return UICollectionViewCell()}
         emojiCell.prepareForReuse()
         
-        if let emojies = delegate?.visibleEmojies[indexPath.item] {
-            emojiCell.config(withTitle: emojies)}
-        emojiCell.backgroundColor = delegate?.color
+        if let emojisMix = delegate?.visibleEmojis[indexPath.item] {
+            emojiCell.config(withTitle: emojisMix.emojis)
+            emojiCell.backgroundColor = emojisMix.backgroundColor}
         
         return emojiCell
     }

@@ -3,9 +3,8 @@ import UIKit
 
 protocol EmojiMixerDelegateProtocol: AnyObject {
     var emojies: [String] { get }             // Массив доступных эмодзи
-    var visibleEmojies: [String] { get set } // Массив видимых эмодзи
-    var color: UIColor {get}
-    func makeNewMix() -> String?
+    var visibleEmojis: [EmojiMix] { get set } // Массив видимых эмодзи
+    func makeNewMix() -> EmojiMix? 
     func addRandomEmoji()
     func undoLastEmoji() -> Int?
 }

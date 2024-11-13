@@ -24,18 +24,18 @@ final class EmojiManagerDelegate: EmojiMixerDelegateProtocol {
     ]
     
     //пустой массив для добавления эмодзи
-    var visibleEmojies = [String]()
-    var color = UIColor()
+    var visibleEmojis = [EmojiMix]()
     
-    func makeNewMix() -> String?  {
+    func makeNewMix() -> EmojiMix?  {
         guard let first = emojies.randomElement() else {return nil}
         guard let second = emojies.randomElement() else {return nil}
         guard let third = emojies.randomElement() else {return nil}
-        color = makeColor((first, second, third))
+        let color = makeColor((first, second, third))
         print(color)
+        
         let randomMix = first + second + third
         print(randomMix)
-        return randomMix
+        return EmojiMix(emojis: randomMix, backgroundColor: color)
     }
     
     func addRandomEmoji() {
@@ -43,13 +43,13 @@ final class EmojiManagerDelegate: EmojiMixerDelegateProtocol {
         guard let randomEmoji = makeNewMix() else {
             print("addRandomEmoji: Не удалось выбрать randomEmoji")
             return}
-        visibleEmojies.append(randomEmoji)
+        visibleEmojis.append(randomEmoji)
     }
     
     func undoLastEmoji() -> Int? {
-        if !visibleEmojies.isEmpty { // Проверяем, что есть хотя бы один элемент в массиве
-            let lastIndex = visibleEmojies.count - 1 // Определяем индекс последнего элемента
-            visibleEmojies.removeLast() // Удаляем последний эмодзи из массива
+        if !visibleEmojis.isEmpty { // Проверяем, что есть хотя бы один элемент в массиве
+            let lastIndex = visibleEmojis.count - 1 // Определяем индекс последнего элемента
+            visibleEmojis.removeLast() // Удаляем последний эмодзи из массива
             return lastIndex
         }
         return nil
