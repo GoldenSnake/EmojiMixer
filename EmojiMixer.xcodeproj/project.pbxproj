@@ -18,6 +18,7 @@
 		014959462CE376240081EF4A /* EmojiMixerDelegateProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 014959452CE376240081EF4A /* EmojiMixerDelegateProtocol.swift */; };
 		014959482CE3766D0081EF4A /* EmojiManagerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 014959472CE3766D0081EF4A /* EmojiManagerDelegate.swift */; };
 		0149594A2CE3A8880081EF4A /* EmojiMix.swift in Sources */ = {isa = PBXBuildFile; fileRef = 014959492CE3A8880081EF4A /* EmojiMix.swift */; };
+		0163A8FA2CE4935E004BA8F0 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0163A8F92CE4935E004BA8F0 /* CoreDataManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +35,7 @@
 		014959452CE376240081EF4A /* EmojiMixerDelegateProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiMixerDelegateProtocol.swift; sourceTree = "<group>"; };
 		014959472CE3766D0081EF4A /* EmojiManagerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiManagerDelegate.swift; sourceTree = "<group>"; };
 		014959492CE3A8880081EF4A /* EmojiMix.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiMix.swift; sourceTree = "<group>"; };
+		0163A8F92CE4935E004BA8F0 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,6 +94,7 @@
 			isa = PBXGroup;
 			children = (
 				014959302CE228D70081EF4A /* EmojiMixer.xcdatamodeld */,
+				0163A8F92CE4935E004BA8F0 /* CoreDataManager.swift */,
 			);
 			path = CoreData;
 			sourceTree = "<group>";
@@ -184,6 +187,7 @@
 				0149594A2CE3A8880081EF4A /* EmojiMix.swift in Sources */,
 				0149592A2CE228D70081EF4A /* SceneDelegate.swift in Sources */,
 				0149593F2CE2371A0081EF4A /* EmojiCellCollectionViewCell.swift in Sources */,
+				0163A8FA2CE4935E004BA8F0 /* CoreDataManager.swift in Sources */,
 				014959482CE3766D0081EF4A /* EmojiManagerDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
