@@ -3,31 +3,13 @@ import UIKit
 
 class EmojiMixerVC: UIViewController {
     
+    weak var delegate: EmojiMixerDelegateProtocol?
+    let emojiManager = EmojiManagerDelegate()
+    
     private let undoButton = UIBarButtonItem()
     private let addButton = UIBarButtonItem()
     
     private let collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
-    
-    let emojies = [
-        // Улыбки и лица
-        "😀", "😂", "😊", "😍", "😜",
-        // Жесты и руки
-        "👍", "👎", "👌", "👏", "🙏",
-        // Люди и деятельность
-        "💃", "🕺", "👫", "👩‍❤️‍👨", "👨‍👩‍👧",
-        // Животные и природа
-        "🐶", "🐱", "🐰", "🦁", "🐼",
-        // Еда и напитки
-        "🍏", "🍕", "🍔", "🍣", "🍫",
-        // Путешествия и транспорт
-        "✈️", "🚗", "🚀", "🚁", "🚲",
-        // Символы и объекты
-        "💡", "📱", "💻", "⌛️", "🔒",
-        "🍇", "🍈", "🍉", "🍊", "🍋", "🍌", "🍍", "🥭", "🍎", "🍏", "🍐", "🍒", "🍓", "🫐", "🥝", "🍅", "🫒", "🥥", "🥑", "🍆", "🥔", "🥕", "🌽", "🌶️", "🫑", "🥒", "🥬", "🥦", "🧄", "🧅", "🍄"
-    ]
-    
-    //пустой массив для добавления эмодзи
-    var visibleEmojies = [String]()
     
     let params = GeometricParams(cellCount: 2, leftInset: 10, rightInset: 10, cellSpacing: 10)
     
@@ -39,8 +21,10 @@ class EmojiMixerVC: UIViewController {
         setupNavigationBar()
         setupCollectionView()
         
+        // Создайте делегат и передайте его в свойство
+        
+        self.delegate = emojiManager
     }
-    
     
     // MARK: - NavigationBar
     
@@ -99,22 +83,30 @@ class EmojiMixerVC: UIViewController {
     // MARK: - @objc
     @objc private func addButtonDidTap() {
         print("Add tapped!")
-        let randomEmoji = emojies.randomElement()
-        guard let randomEmoji = randomEmoji else {return}
         
-        visibleEmojies.append(randomEmoji)
+        // Проверка, что делегат существует
+        guard let delegate = delegate else {
+            print("Нет делегата!")
+            return
+        }
         
-        let newIndex = IndexPath(item: visibleEmojies.count - 1, section: 0)
+        delegate.addRandomEmoji()
         
-        collectionView.performBatchUpdates({collectionView.insertItems(at: [newIndex])})
+        let emojiCount = delegate.visibleEmojis.count
+        let newIndex = IndexPath(item: emojiCount - 1, section: 0)
+        collectionView.performBatchUpdates({
+            collectionView.insertItems(at: [newIndex])
+        }, completion: nil)
     }
     
     @objc private func undoButtonDidTap() {
         print("Undo tapped!")
-        if !visibleEmojies.isEmpty { // Проверяем, что есть хотя бы один элемент в массиве
-            let lastIndex = visibleEmojies.count - 1 // Определяем индекс последнего элемента
-            visibleEmojies.removeLast() // Удаляем последний эмодзи из массива
-            
+        // Проверка, что делегат существует
+        guard let delegate = delegate else {
+            print("Нет делегата!")
+            return
+        }
+        if let lastIndex = delegate.undoLastEmoji() {
             // Удаляем ячейку из коллекции с анимацией
             let lastIndexPath = IndexPath(row: lastIndex, section: 0)
             collectionView.performBatchUpdates({
@@ -122,7 +114,6 @@ class EmojiMixerVC: UIViewController {
             }, completion: nil)
         }
     }
-    
 }
 
 
@@ -132,16 +123,19 @@ extension EmojiMixerVC: UICollectionViewDataSource {
     
     //кол-во элементов
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return visibleEmojies.count
+        
+        guard let emojis = delegate?.visibleEmojis.count else {return 0}
+        return emojis
     }
     
     //настройка ячейки
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let emojiCell = collectionView.dequeueReusableCell(withReuseIdentifier: "EmojiCell", for: indexPath) as? EmojiCellCollectionViewCell else {return UICollectionViewCell()}
-        
         emojiCell.prepareForReuse()
-        emojiCell.config(withTitle: emojies[indexPath.item])
-        emojiCell.backgroundColor = .lightGray
+        
+        if let emojisMix = delegate?.visibleEmojis[indexPath.item] {
+            emojiCell.config(withTitle: emojisMix.emojis)
+            emojiCell.backgroundColor = emojisMix.backgroundColor}
         
         return emojiCell
     }
