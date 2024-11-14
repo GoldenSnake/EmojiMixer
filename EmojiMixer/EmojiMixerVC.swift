@@ -6,6 +6,8 @@ class EmojiMixerVC: UIViewController {
     weak var delegate: EmojiMixerDelegateProtocol?
     let emojiManager = EmojiManagerDelegate()
     
+    private let emojiMixStore = EmojiMixStore()
+    
     private let undoButton = UIBarButtonItem()
     private let addButton = UIBarButtonItem()
     
@@ -20,13 +22,20 @@ class EmojiMixerVC: UIViewController {
         
         setupNavigationBar()
         setupCollectionView()
-        
-        // Создайте делегат и передайте его в свойство
-        
+    
         self.delegate = emojiManager
+        loadEmojiMixes()
     }
     
     // MARK: - NavigationBar
+    
+    private func loadEmojiMixes() {
+        guard let delegate = delegate else {
+            print("Нет делегата!")
+            return
+        }
+        delegate.visibleEmojis = try! emojiMixStore.fetchEmojiMixes()
+    }
     
     private func setupNavigationBar() {
         setupNavBarItemLeft()
@@ -90,10 +99,12 @@ class EmojiMixerVC: UIViewController {
             return
         }
         
-        delegate.addRandomEmoji()
-        
+        if let newMix = delegate.addRandomEmoji() {
+            try! emojiMixStore.addNewEmojiMix(newMix)}
         let emojiCount = delegate.visibleEmojis.count
         let newIndex = IndexPath(item: emojiCount - 1, section: 0)
+        
+        
         collectionView.performBatchUpdates({
             collectionView.insertItems(at: [newIndex])
         }, completion: nil)

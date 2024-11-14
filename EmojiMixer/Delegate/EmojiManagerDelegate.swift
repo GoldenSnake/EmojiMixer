@@ -38,12 +38,13 @@ final class EmojiManagerDelegate: EmojiMixerDelegateProtocol {
         return EmojiMix(emojis: randomMix, backgroundColor: color)
     }
     
-    func addRandomEmoji() {
+    func addRandomEmoji() -> EmojiMix? {
         
         guard let randomEmoji = makeNewMix() else {
             print("addRandomEmoji: Не удалось выбрать randomEmoji")
-            return}
+            return nil}
         visibleEmojis.append(randomEmoji)
+        return randomEmoji
     }
     
     func undoLastEmoji() -> Int? {
