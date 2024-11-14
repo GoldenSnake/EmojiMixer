@@ -5,7 +5,7 @@ import UIKit
 
 final class EmojiManagerDelegate: EmojiMixerDelegateProtocol {
     
-    let emojies = [
+    let emojis = [
         // Улыбки и лица
         "😀", "😂", "😊", "😍", "😜",
         // Жесты и руки
@@ -27,9 +27,9 @@ final class EmojiManagerDelegate: EmojiMixerDelegateProtocol {
     var visibleEmojis = [EmojiMix]()
     
     func makeNewMix() -> EmojiMix?  {
-        guard let first = emojies.randomElement() else {return nil}
-        guard let second = emojies.randomElement() else {return nil}
-        guard let third = emojies.randomElement() else {return nil}
+        guard let first = emojis.randomElement() else {return nil}
+        guard let second = emojis.randomElement() else {return nil}
+        guard let third = emojis.randomElement() else {return nil}
         let color = makeColor((first, second, third))
         print(color)
         
